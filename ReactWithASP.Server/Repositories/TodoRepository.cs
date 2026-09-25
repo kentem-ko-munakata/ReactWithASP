@@ -16,7 +16,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
         .ToList();
   }
 
-  public async Task<TodoItem?> GetTodo(long id)
+  public async Task<TodoItem?> GetTodo(int id)
   {
     return await context.TodoItems
         .AsNoTracking()

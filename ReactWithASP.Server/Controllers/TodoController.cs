@@ -16,7 +16,7 @@ public class TodoController(ITodoApplication application) : ControllerBase
   }
 
   [HttpGet("{id}")]
-  public async Task<ActionResult<TodoItem>> GetTodo(long id)
+  public async Task<ActionResult<TodoItem>> GetTodo(int id)
   {
     var todo = await application.GetTodo(id);
 
@@ -53,5 +53,10 @@ public class TodoController(ITodoApplication application) : ControllerBase
 
     return Ok(todo);
   }
+
+  // [HttpDelete("{id}")]
+  // public async Task<IActionResult> DeleteTodo(
+
+  // );
 
 }

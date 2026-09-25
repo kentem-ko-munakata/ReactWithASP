@@ -11,7 +11,7 @@ public class TodoApplication(ITodoRepository repository)
     return repository.GetTodos();
   }
 
-  public Task<TodoItem?> GetTodo(long id)
+  public Task<TodoItem?> GetTodo(int id)
   {
     return repository.GetTodo(id);
   }
