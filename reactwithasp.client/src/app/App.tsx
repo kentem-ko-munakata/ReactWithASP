@@ -1,7 +1,9 @@
-﻿function App() {
+﻿import { TodoPage } from "@/pages/todo";
+
+function App() {
   return (
     <>
-      <h1>hello</h1>
+      <TodoPage />
     </>
   );
 }
