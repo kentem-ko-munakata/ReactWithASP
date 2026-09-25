@@ -28,4 +28,14 @@ public class TodoApplication(ITodoRepository repository)
 
     return repository.CreateTodo(todo);
   }
+
+  public Task<TodoItem?> UpdateTodo(
+    int id,
+    UpdateTodoRequest request)
+  {
+    return repository.UpdateTodo(
+        id,
+        request.Title.Trim(),
+        request.IsCompleted);
+  }
 }

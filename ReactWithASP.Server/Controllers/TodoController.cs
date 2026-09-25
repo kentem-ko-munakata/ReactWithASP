@@ -39,4 +39,19 @@ public class TodoController(ITodoApplication application) : ControllerBase
         todo);
   }
 
+  [HttpPut("{id}")]
+  public async Task<ActionResult<TodoItem>> UpdateTodo(
+    int id,
+    UpdateTodoRequest request)
+  {
+    var todo = await application.UpdateTodo(id, request);
+
+    if (todo is null)
+    {
+      return NotFound();
+    }
+
+    return Ok(todo);
+  }
+
 }
