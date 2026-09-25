@@ -1,9 +1,11 @@
 このファイルは、Visual Studio がどのようにプロジェクトを作成したかを説明します。
 
 このプロジェクトの生成には、次のツールが使用されました:
+
 - create-vite
 
 このプロジェクトを生成するのに次の手順が使用されました:
+
 - create-vite を使用して React プロジェクトを作成します: `npm init --yes vite@latest reactwithasp.client -- --template=react-ts  --no-rolldown --no-immediate`.
 - `vite.config.ts` を更新して、プロキシと証明書を設定します。
 - `vite.config.js` 入力用に `@type/node` を追加します。
