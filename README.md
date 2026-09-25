@@ -1,21 +1,21 @@
-# ReactWithASP
-React �~ ASP.NET Core�̊�b���w�Ԃ��߂ɍ쐬����A���C�p��Todo�Ǘ��A�v���ł��B
+﻿# ReactWithASP
+React × ASP.NET Coreの基礎を学ぶために作成する、研修用のTodo管理アプリです。
 
-## ��ȋ@�\
-- �^�X�N�ꗗ�\��
-- �^�X�N�̒ǉ�
-- �^�X�N�̊�����Ԑ؂�ւ�
-- �^�X�N�̍X�V
-- �^�X�N�̍폜
-- �����ς݃^�X�N�̈ꊇ�폜
+## 主な機能
+- タスク一覧表示
+- タスクの追加
+- タスクの完了状態切り替え
+- タスクの更新
+- タスクの削除
+- 完了済みタスクの一括削除
 
-## ����
-### SwaggerUI�̒ǉ��菇
-�@ASP.NET Core�v���W�F�N�g�z���ɂĈȉ��R�}���h�����s��`Swagger UI�p�b�P�[�W`��ǉ�
+## メモ
+### SwaggerUIの追加手順
+①ASP.NET Coreプロジェクト配下にて以下コマンドを実行し`Swagger UIパッケージ`を追加
 ```powershell
 dotnet add package Swashbuckle.AspNetCore.SwaggerUI
 ```
-�A`Program.cs`��ݒ�
+②`Program.cs`を設定
 ```diff
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,8 +53,7 @@ app.MapFallbackToFile("/index.html");
 app.Run();
 
 ```
-�B�f�o�b�O���s���A�ȉ��ɃA�N�Z�X
+③デバッグ実行し、以下にアクセス
 ```bash
 https://localhost:7143/swagger/index.html
 ```
-
