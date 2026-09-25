@@ -14,4 +14,29 @@ public class TodoController(ITodoApplication application) : ControllerBase
     var todos = await application.GetTodos();
     return Ok(todos);
   }
+
+  [HttpGet("{id}")]
+  public async Task<ActionResult<TodoItem>> GetTodo(long id)
+  {
+    var todo = await application.GetTodo(id);
+
+    if (todo == null)
+    {
+      return NotFound();
+    }
+    return Ok(todo);
+  }
+
+  [HttpPost]
+  public async Task<ActionResult<TodoItem>> CreateTodo(
+    CreateTodoRequest request)
+  {
+    var todo = await application.CreateTodo(request);
+
+    return CreatedAtAction(
+        nameof(GetTodo),
+        new { id = todo.Id },
+        todo);
+  }
+
 }
