@@ -1,9 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using ReactWithASP.Server.Models;
+using ReactWithASP.Server.Application;
+using ReactWithASP.Server.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<ITodoApplication, TodoApplication>();
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
 
 builder.Services.AddDbContext<TodoContext>(options =>
     options.UseSqlite(

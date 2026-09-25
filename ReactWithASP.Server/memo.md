@@ -51,3 +51,73 @@ builder.Services.AddControllers();
 dotnet ef migrations add InitialCreate --project ReactWithASP.Server
 dotnet ef database update --project ReactWithASP.Server
 ```
+
+## TODO一覧取得API作成
+
+### Controller層作成
+
+[TodoController.cs](./Controllers/)
+
+```c
+using Microsoft.AspNetCore.Mvc;
+using ReactWithASP.Server.Models;
+
+namespace ReactWithASP.Server.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TodoController(): ControllerBase
+{
+  [HttpGet]
+  public void GetTodos()
+  {
+    Console.WriteLine("GET: api/todoが呼ばれました");
+  }
+}
+```
+
+### Repository層作成
+
+[ITodoRepository.cs](./Repositories/ITodoRepository.cs)
+[TodoRepository.cs](./Repositories/TodoRepository.cs)
+
+### App層作成
+
+[ITodoApplication.cs](./Application/ITodoApplication.cs)
+[TodoApplication.cs](./Application/TodoApplication.cs)
+
+### Controller更新
+
+アプリ層のインターフェースを受け取り、GetTodos(Todo一覧取得)を呼び出すAPI作成
+
+```c
+using Microsoft.AspNetCore.Mvc;
+using ReactWithASP.Server.Application;
+using ReactWithASP.Server.Models;
+
+namespace ReactWithASP.Server.Controllers;
+
+[ApiController]
+[Route("api/[controller]")]
+public class TodoController(ITodoApplication application) : ControllerBase
+{
+  [HttpGet]
+  public async Task<ActionResult<IReadOnlyList<TodoItem>>> GetTodos()
+  {
+    var todos = await application.GetTodos();
+    return Ok(todos);
+  }
+}
+```
+
+### DI登録
+
+[Program.cs](./Program.cs)
+
+```c
+using ReactWithASP.Server.Application;
+using ReactWithASP.Server.Repositories;
+
+builder.Services.AddScoped<ITodoApplication, TodoApplication>();
+builder.Services.AddScoped<ITodoRepository, TodoRepository>();
+```
