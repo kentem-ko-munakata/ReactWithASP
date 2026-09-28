@@ -88,10 +88,8 @@ public class TodoController(ITodoApplication application) : ControllerBase
         return NoContent();
     }
 
-    [HttpPut]
-    public async Task<ActionResult<TodoItem>> ToggleTodo(
-      int id
-      )
+    [HttpPost("{id}/toggle")]
+    public async Task<ActionResult<TodoItem>> ToggleTodo(int id)
     {
         var todo = await application.ToggleTodo(id);
 
