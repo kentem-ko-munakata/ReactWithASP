@@ -1,2 +1,2 @@
 export type { Todo } from "./model/schema";
-export { useTodosQuery } from "./model/queries";
+export { useAddTodoMutation, useTodosQuery } from "./model/queries";
