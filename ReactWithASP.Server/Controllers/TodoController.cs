@@ -54,9 +54,17 @@ public class TodoController(ITodoApplication application) : ControllerBase
     return Ok(todo);
   }
 
-  // [HttpDelete("{id}")]
-  // public async Task<IActionResult> DeleteTodo(
+  [HttpDelete("{id}")]
+  public async Task<IActionResult> DeleteTodo(int id)
+  {
+    var todo = await application.DeleteTodo(id);
 
-  // );
+    if (todo is false)
+    {
+      return NotFound();
+    }
+
+    return NoContent();
+  }
 
 }
