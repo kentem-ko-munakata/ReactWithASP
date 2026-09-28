@@ -2,6 +2,7 @@ import { useTodosQuery } from "@/entities/todo";
 import { TodoItem } from "@/entities/todo/ui/TodoItem";
 import type { ReactNode } from "react";
 import styles from "./TodoBoard.module.css";
+import { AddTodoForm } from "@/features/add-todo";
 
 export const TodoBoard = () => {
   const { data: todos, isLoading, error } = useTodosQuery();
@@ -23,5 +24,10 @@ export const TodoBoard = () => {
       </ul>
     );
   }
-  return <div>{content}</div>;
+  return (
+    <div>
+      <AddTodoForm />
+      {content}
+    </div>
+  );
 };
