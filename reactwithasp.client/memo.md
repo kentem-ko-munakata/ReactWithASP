@@ -20,7 +20,7 @@ mkdir src\shared
 [global.css](./src/app/styles/global.css)
 [tokens.css](./src/app/styles/tokens.css)
 
-## TodoPageの作成
+## pages, widgetsの作成
 
 - Todo型の定義
 - useEffectで api/todoを呼び出し、todosにセットする
