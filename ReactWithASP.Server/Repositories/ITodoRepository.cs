@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using ReactWithASP.Server.Models;
 
 namespace ReactWithASP.Server.Repositories;
@@ -11,4 +12,6 @@ public interface ITodoRepository
     int id,
     string title,
     bool isCompleted);
+
+  Task<bool> DeleteTodo(int id);
 }
