@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using ReactWithASP.Server.Models;
 
 namespace ReactWithASP.Server.Repositories;
@@ -5,10 +6,12 @@ namespace ReactWithASP.Server.Repositories;
 public interface ITodoRepository
 {
   Task<IReadOnlyList<TodoItem>> GetTodos();
-  Task<TodoItem?> GetTodo(long id);
+  Task<TodoItem?> GetTodo(int id);
   Task<TodoItem> CreateTodo(TodoItem todo);
   Task<TodoItem?> UpdateTodo(
     int id,
     string title,
     bool isCompleted);
+
+  Task<bool> DeleteTodo(int id);
 }

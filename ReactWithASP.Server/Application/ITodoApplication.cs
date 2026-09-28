@@ -5,9 +5,10 @@ namespace ReactWithASP.Server.Application;
 public interface ITodoApplication
 {
   Task<IReadOnlyList<TodoItem>> GetTodos();
-  Task<TodoItem?> GetTodo(long id);
+  Task<TodoItem?> GetTodo(int id);
   Task<TodoItem> CreateTodo(CreateTodoRequest request);
   Task<TodoItem?> UpdateTodo(
     int id,
     UpdateTodoRequest request);
+  Task<bool> DeleteTodo(int id);
 }

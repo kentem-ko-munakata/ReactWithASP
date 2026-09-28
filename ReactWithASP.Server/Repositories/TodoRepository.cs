@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ReactWithASP.Server.Models;
 
@@ -16,7 +18,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
         .ToList();
   }
 
-  public async Task<TodoItem?> GetTodo(long id)
+  public async Task<TodoItem?> GetTodo(int id)
   {
     return await context.TodoItems
         .AsNoTracking()
@@ -51,5 +53,20 @@ public class TodoRepository(TodoContext context) : ITodoRepository
     await context.SaveChangesAsync();
 
     return todo;
+  }
+
+  public async Task<bool> DeleteTodo(int id)
+  {
+    var todo = await context.TodoItems.FirstOrDefaultAsync(todo => todo.Id == id);
+
+    if (todo is null)
+    {
+      return false;
+    }
+
+    context.Remove(todo);
+    await context.SaveChangesAsync();
+
+    return true;
   }
 }
