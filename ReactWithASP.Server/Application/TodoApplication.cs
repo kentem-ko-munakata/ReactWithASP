@@ -38,4 +38,9 @@ public class TodoApplication(ITodoRepository repository)
         request.Title.Trim(),
         request.IsCompleted);
   }
+
+  public Task<bool> DeleteTodo(int id)
+  {
+    return repository.DeleteTodo(id);
+  }
 }

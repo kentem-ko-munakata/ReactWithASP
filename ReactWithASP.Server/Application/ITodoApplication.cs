@@ -10,4 +10,5 @@ public interface ITodoApplication
   Task<TodoItem?> UpdateTodo(
     int id,
     UpdateTodoRequest request);
+  Task<bool> DeleteTodo(int id);
 }
