@@ -11,18 +11,17 @@ public class TodoRepository(TodoContext context) : ITodoRepository
   {
     var todos = await context.TodoItems
         .AsNoTracking()
-        .ToListAsync();
-
-    return todos
         .OrderByDescending(todo => todo.CreatedAt)
-        .ToList();
+        .ToListAsync();
+    return todos;
   }
 
   public async Task<TodoItem?> GetTodo(int id)
   {
-    return await context.TodoItems
-        .AsNoTracking()
-        .FirstOrDefaultAsync(todo => todo.Id == id);
+    var todo = await context.TodoItems
+    .AsNoTracking()
+    .FirstOrDefaultAsync(todo => todo.Id == id);
+    return todo;
   }
 
   public async Task<TodoItem> CreateTodo(TodoItem todo)
@@ -57,7 +56,8 @@ public class TodoRepository(TodoContext context) : ITodoRepository
 
   public async Task<bool> DeleteTodo(int id)
   {
-    var todo = await context.TodoItems.FirstOrDefaultAsync(todo => todo.Id == id);
+    var todo = await context.TodoItems
+    .FirstOrDefaultAsync(todo => todo.Id == id);
 
     if (todo is null)
     {

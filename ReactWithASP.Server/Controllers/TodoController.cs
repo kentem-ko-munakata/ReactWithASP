@@ -5,7 +5,6 @@ using ReactWithASP.Server.Models;
 namespace ReactWithASP.Server.Controllers;
 
 /// <summary>Todo を管理する API を提供します。</summary>
-/// <param name="application">Todo の操作を実行するアプリケーション。</param>
 [ApiController]
 [Route("api/[controller]")]
 public class TodoController(ITodoApplication application) : ControllerBase
