@@ -8,7 +8,7 @@ export const deleteTodos = async ({ ids }: DeleteTodosProps): Promise<void> => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(ids),
+    body: JSON.stringify({ ids }),
   });
 
   if (!response.ok) {
