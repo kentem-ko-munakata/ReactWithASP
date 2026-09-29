@@ -3,6 +3,7 @@ import { getTodos } from "../api/getTodos";
 import { addTodo } from "../api/addTodo";
 import type { Todo } from "./schema";
 import { toggleTodo } from "../api/toggleTodo";
+import { deleteTodo } from "../api/deleteTodo";
 
 export const todoKeys = {
   list: ["todos"] as const,
@@ -46,6 +47,19 @@ export const useToggleTodoMutation = () => {
           ? old.map((todo) => (todo.id === updated.id ? updated : todo))
           : [updated, ...old];
       });
+    },
+  });
+};
+
+export const useDeleteTodoMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteTodo,
+    onSuccess: (_data, { id }) => {
+      queryClient.setQueryData<Todo[]>(todoKeys.list, (old) =>
+        old?.filter((todo) => todo.id !== id),
+      );
     },
   });
 };
