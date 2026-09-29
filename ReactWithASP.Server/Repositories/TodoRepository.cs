@@ -68,4 +68,22 @@ public class TodoRepository(TodoContext context) : ITodoRepository
 
     return true;
   }
+
+  public async Task<TodoItem?> ToggleTodo(
+   int id)
+  {
+    var todo = await context.TodoItems
+        .FirstOrDefaultAsync(todo => todo.Id == id);
+
+    if (todo is null)
+    {
+      return null;
+    }
+    todo.IsCompleted = !todo.IsCompleted;
+    todo.UpdatedAt = DateTimeOffset.UtcNow;
+
+    await context.SaveChangesAsync();
+
+    return todo;
+  }
 }

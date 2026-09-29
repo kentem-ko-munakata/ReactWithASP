@@ -14,4 +14,5 @@ public interface ITodoRepository
     bool isCompleted);
 
   Task<bool> DeleteTodo(int id);
+  Task<TodoItem?> ToggleTodo(int id);
 }
