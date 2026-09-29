@@ -43,4 +43,11 @@ public class TodoApplication(ITodoRepository repository)
   {
     return repository.DeleteTodo(id);
   }
+
+  public Task<TodoItem?> ToggleTodo(
+    int id)
+  {
+    return repository.ToggleTodo(
+        id);
+  }
 }

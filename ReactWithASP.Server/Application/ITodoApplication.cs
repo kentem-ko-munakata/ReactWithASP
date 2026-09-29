@@ -11,4 +11,7 @@ public interface ITodoApplication
     int id,
     UpdateTodoRequest request);
   Task<bool> DeleteTodo(int id);
+  Task<TodoItem?> ToggleTodo(
+    int id
+  );
 }

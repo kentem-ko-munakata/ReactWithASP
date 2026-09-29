@@ -1,8 +1,8 @@
 import { useTodosQuery } from "@/entities/todo";
-import { TodoItem } from "@/entities/todo/ui/TodoItem";
 import type { ReactNode } from "react";
 import styles from "./TodoBoard.module.css";
 import { AddTodoForm } from "@/features/add-todo";
+import { TodoRow } from "./TodoRow";
 
 export const TodoBoard = () => {
   const { data: todos, isLoading, error } = useTodosQuery();
@@ -19,7 +19,7 @@ export const TodoBoard = () => {
     content = (
       <ul className={styles.list}>
         {todos.map((todo) => (
-          <TodoItem key={todo.id} todo={todo} />
+          <TodoRow key={todo.id} todo={todo} />
         ))}
       </ul>
     );
