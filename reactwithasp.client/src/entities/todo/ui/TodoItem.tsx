@@ -7,10 +7,10 @@ interface TodoItemProps {
 }
 export const TodoItem = ({ todo }: TodoItemProps) => {
   return (
-    <div className={`${styles.item} ${todo.isCompleted ? styles.completed : ""}`}>
-      <p className={styles.title}>{todo.title}</p>
-      <p>{`作成日時 : ${formatDateTimeJa(todo.createdAt)}`}</p>
-      <p>{`更新日時 : ${formatDateTimeJa(todo.updatedAt)}`}</p>
-    </div>
+    <span className={`${styles.item} ${todo.isCompleted ? styles.completed : ""}`}>
+      <span className={styles.title}>{todo.title}</span>
+      <span>{`作成日時 : ${formatDateTimeJa(todo.createdAt)}`}</span>
+      <span>{`更新日時 : ${formatDateTimeJa(todo.updatedAt)}`}</span>
+    </span>
   );
 };

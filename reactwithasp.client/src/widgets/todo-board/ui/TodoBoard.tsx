@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import styles from "./TodoBoard.module.css";
 import { AddTodoForm } from "@/features/add-todo";
 import { TodoRow } from "./TodoRow";
+import { DeleteTodosButton } from "@/features/delete-todos";
 
 export const TodoBoard = () => {
   const { data: todos, isLoading, error } = useTodosQuery();
@@ -25,9 +26,14 @@ export const TodoBoard = () => {
     );
   }
   return (
-    <div>
-      <AddTodoForm />
+    <>
+      <div className={styles.form}>
+        <AddTodoForm />
+        <DeleteTodosButton
+          ids={todos?.filter((todo) => todo.isCompleted).map((todo) => todo.id) ?? []}
+        />
+      </div>
       {content}
-    </div>
+    </>
   );
 };
