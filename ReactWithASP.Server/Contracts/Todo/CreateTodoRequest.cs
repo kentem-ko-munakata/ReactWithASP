@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ReactWithASP.Server.Application;
+namespace ReactWithASP.Server.Contracts.Todo;
 
 /// <summary>Todo の新規作成に使用するリクエスト。</summary>
 public class CreateTodoRequest
