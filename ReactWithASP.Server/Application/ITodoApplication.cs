@@ -1,3 +1,4 @@
+using ReactWithASP.Server.Contracts.Todo;
 using ReactWithASP.Server.Models;
 
 namespace ReactWithASP.Server.Application;
@@ -11,6 +12,7 @@ public interface ITodoApplication
     int id,
     UpdateTodoRequest request);
   Task<bool> DeleteTodo(int id);
+  Task<bool> DeleteTodos(int[] ids);
   Task<TodoItem?> ToggleTodo(
     int id
   );

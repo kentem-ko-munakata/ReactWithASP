@@ -15,7 +15,6 @@ export const TodoRow = ({ todo }: TodoRowProps) => {
         <TodoCompletionCheckbox todo={todo} />
         <TodoItem todo={todo} />
       </label>
-      {/* 編集ボタン追加予定 */}
       <DeleteTodoButton todo={todo} />
     </li>
   );

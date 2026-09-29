@@ -1,4 +1,4 @@
-namespace ReactWithASP.Server.Application;
+namespace ReactWithASP.Server.Contracts.Todo;
 
 public class DeleteTodosRequest
 {

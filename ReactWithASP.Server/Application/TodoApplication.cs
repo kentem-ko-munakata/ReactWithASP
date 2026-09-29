@@ -1,3 +1,4 @@
+using ReactWithASP.Server.Contracts.Todo;
 using ReactWithASP.Server.Models;
 using ReactWithASP.Server.Repositories;
 
@@ -42,6 +43,12 @@ public class TodoApplication(ITodoRepository repository)
   public Task<bool> DeleteTodo(int id)
   {
     return repository.DeleteTodo(id);
+  }
+
+  public Task<bool> DeleteTodos(int[] ids)
+  {
+    var distinctIds = ids.Distinct().ToArray();
+    return repository.DeleteTodos(distinctIds);
   }
 
   public Task<TodoItem?> ToggleTodo(
