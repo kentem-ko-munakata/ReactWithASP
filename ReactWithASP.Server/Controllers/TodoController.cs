@@ -88,6 +88,36 @@ public class TodoController(ITodoApplication application) : ControllerBase
         return NoContent();
     }
 
+    /// <summary>指定した ID の Todo を一括削除します。</summary>
+    /// <response code="204">Todo を削除しました。</response>
+    /// <response code="400">ID の一覧が空、または無効です。</response>
+    /// <response code="404">指定した ID の Todo が存在しません。</response>
+    [HttpDelete("bulk")]
+    public async Task<IActionResult> DeleteTodos(DeleteTodosRequest request)
+    {
+        if (request.Ids is null || request.Ids.Length == 0 || request.Ids.Any(id => id <= 0))
+        {
+            return BadRequest();
+        }
+
+        var distinctIds = request.Ids.Distinct().ToArray();
+
+        foreach (var id in distinctIds)
+        {
+            if (await application.GetTodo(id) is null)
+            {
+                return NotFound();
+            }
+        }
+
+        foreach (var id in distinctIds)
+        {
+            await application.DeleteTodo(id);
+        }
+
+        return NoContent();
+    }
+
     [HttpPost("{id}/toggle")]
     public async Task<ActionResult<TodoItem>> ToggleTodo(int id)
     {

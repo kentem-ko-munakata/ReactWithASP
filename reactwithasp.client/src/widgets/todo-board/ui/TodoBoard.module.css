@@ -12,3 +12,15 @@
   color: var(--color-text-muted);
   text-align: center;
 }
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* .form > form {
+  flex: 1 1 20rem;
+  min-width: 0;
+} */

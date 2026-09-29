@@ -11,8 +11,10 @@ interface TodoRowProps {
 export const TodoRow = ({ todo }: TodoRowProps) => {
   return (
     <li className={`${styles.container} ${todo.isCompleted ? styles.completed : ""}`}>
-      <TodoCompletionCheckbox todo={todo} />
-      <TodoItem todo={todo} />
+      <label className={styles.toggleArea}>
+        <TodoCompletionCheckbox todo={todo} />
+        <TodoItem todo={todo} />
+      </label>
       {/* 編集ボタン追加予定 */}
       <DeleteTodoButton todo={todo} />
     </li>

@@ -9,6 +9,14 @@
   padding: var(--space-2) var(--space-4);
 }
 
+.toggleArea {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  cursor: pointer;
+}
+
 .completed.container {
   background-color: var(--color-surface);
 }

@@ -4,6 +4,7 @@ import { addTodo } from "../api/addTodo";
 import type { Todo } from "./schema";
 import { toggleTodo } from "../api/toggleTodo";
 import { deleteTodo } from "../api/deleteTodo";
+import { deleteTodos } from "../api/deleteTodos";
 
 export const todoKeys = {
   list: ["todos"] as const,
@@ -59,6 +60,19 @@ export const useDeleteTodoMutation = () => {
     onSuccess: (_data, { id }) => {
       queryClient.setQueryData<Todo[]>(todoKeys.list, (old) =>
         old?.filter((todo) => todo.id !== id),
+      );
+    },
+  });
+};
+
+export const useDeleteTodosMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteTodos,
+    onSuccess: (_data, { ids }) => {
+      queryClient.setQueryData<Todo[]>(todoKeys.list, (old) =>
+        old?.filter((todo) => !ids.includes(todo.id)),
       );
     },
   });
