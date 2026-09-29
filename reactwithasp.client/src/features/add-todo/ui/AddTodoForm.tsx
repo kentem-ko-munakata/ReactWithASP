@@ -8,6 +8,7 @@ export const AddTodoForm = () => {
     <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.controls}>
         <input
+          className={styles.input}
           id="todo-title"
           type="text"
           aria-label="Todoのタイトル"
@@ -15,11 +16,15 @@ export const AddTodoForm = () => {
           onChange={handleTitleChange}
           disabled={isPending}
         />
-        <button type="submit" disabled={isPending}>
+        <button className={styles.button} type="submit" disabled={isPending}>
           {isPending ? "追加中..." : "追加"}
         </button>
       </div>
-      {error && <p role="alert">{error}</p>}
+      {error && (
+        <p className={styles.error} role="alert">
+          {error}
+        </p>
+      )}
     </form>
   );
 };

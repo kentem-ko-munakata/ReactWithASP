@@ -1,15 +1,16 @@
 .button {
-  border: 1px solid var(--color-danger);
-  border-radius: var(--radius-sm);
-  padding: var(--space-1) var(--space-2);
-  background-color: var(--color-bg);
-  color: var(--color-danger);
+  flex: 0 0 auto;
+  min-height: var(--space-6);
+  padding: var(--space-2) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-md);
+  background-color: var(--color-danger);
+  color: var(--color-bg);
   cursor: pointer;
 }
 
 .button:hover:not(:disabled) {
-  background-color: var(--color-danger);
-  color: var(--color-bg);
+  background-color: var(--color-danger-hover);
 }
 
 .button:focus-visible {
