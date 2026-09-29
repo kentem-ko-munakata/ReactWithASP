@@ -21,6 +21,7 @@ export const useAddTodoMutation = () => {
   return useMutation({
     mutationFn: addTodo,
     onSuccess: (created) => {
+      // 新しく作成した Todo を一覧キャッシュの先頭に追加する。
       queryClient.setQueryData<Todo[]>(todoKeys.list, (old) =>
         old ? [created, ...old] : [created],
       );
@@ -34,9 +35,17 @@ export const useToggleTodoMutation = () => {
   return useMutation({
     mutationFn: toggleTodo,
     onSuccess: (updated) => {
-      queryClient.setQueryData<Todo[]>(todoKeys.list, (old) =>
-        old ? [updated, ...old] : [updated],
-      );
+      queryClient.setQueryData<Todo[]>(todoKeys.list, (old) => {
+        // 一覧キャッシュがなければ、更新結果で初期化する。
+        if (!old) {
+          return [updated];
+        }
+
+        // 既存項目は ID で置き換え、見つからない場合は一覧に追加する。
+        return old.some((todo) => todo.id === updated.id)
+          ? old.map((todo) => (todo.id === updated.id ? updated : todo))
+          : [updated, ...old];
+      });
     },
   });
 };
