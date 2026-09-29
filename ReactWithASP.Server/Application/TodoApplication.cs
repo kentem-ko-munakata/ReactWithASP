@@ -44,6 +44,12 @@ public class TodoApplication(ITodoRepository repository)
     return repository.DeleteTodo(id);
   }
 
+  public Task<bool> DeleteTodos(int[] ids)
+  {
+    var distinctIds = ids.Distinct().ToArray();
+    return repository.DeleteTodos(distinctIds);
+  }
+
   public Task<TodoItem?> ToggleTodo(
     int id)
   {

@@ -69,6 +69,23 @@ public class TodoRepository(TodoContext context) : ITodoRepository
     return true;
   }
 
+  public async Task<bool> DeleteTodos(int[] ids)
+  {
+    var todos = await context.TodoItems
+        .Where(todo => ids.Contains(todo.Id))
+        .ToListAsync();
+
+    if (todos.Count != ids.Length)
+    {
+      return false;
+    }
+
+    context.TodoItems.RemoveRange(todos);
+    await context.SaveChangesAsync();
+
+    return true;
+  }
+
   public async Task<TodoItem?> ToggleTodo(
    int id)
   {

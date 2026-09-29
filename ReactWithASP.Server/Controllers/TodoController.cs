@@ -100,19 +100,10 @@ public class TodoController(ITodoApplication application) : ControllerBase
             return BadRequest();
         }
 
-        var distinctIds = request.Ids.Distinct().ToArray();
-
-        foreach (var id in distinctIds)
+        // 対象Todoが見つからない場合
+        if (!await application.DeleteTodos(request.Ids))
         {
-            if (await application.GetTodo(id) is null)
-            {
-                return NotFound();
-            }
-        }
-
-        foreach (var id in distinctIds)
-        {
-            await application.DeleteTodo(id);
+            return NotFound();
         }
 
         return NoContent();

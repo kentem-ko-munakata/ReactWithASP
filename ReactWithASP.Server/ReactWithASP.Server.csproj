@@ -4,15 +4,21 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Reactフロントエンドのプロジェクトが置かれているディレクトリ -->
     <SpaRoot>..\reactwithasp.client</SpaRoot>
+    <!-- バックエンド起動時にSPA開発サーバーを起動するコマンド -->
     <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+    <!-- 開発中のSPA開発サーバーのURL -->
     <SpaProxyServerUrl>https://localhost:62325</SpaProxyServerUrl>
+    <!-- XML形式のAPIドキュメントを生成 Swagger用 -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- XMLコメントがない公開メンバーに対する警告（CS1591）非表示 -->
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+    <!-- ASP.NET CoreとSPA開発サーバーを連携 -->
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>10.*-*</Version>
     </PackageReference>
