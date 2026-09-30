@@ -15,7 +15,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
     return todos.OrderByDescending(todo => todo.CreatedAt).ToList();
   }
 
-  public async Task<TodoItem?> GetTodo(string id)
+  public async Task<TodoItem?> GetTodo(int id)
   {
     var todo = await context.TodoItems
     .AsNoTracking()
@@ -32,7 +32,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
   }
 
   public async Task<TodoItem?> UpdateTodo(
-    string id,
+    int id,
     string title,
     bool isCompleted)
   {
@@ -53,7 +53,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
     return todo;
   }
 
-  public async Task<bool> DeleteTodo(string id)
+  public async Task<bool> DeleteTodo(int id)
   {
     var todo = await context.TodoItems
     .FirstOrDefaultAsync(todo => todo.Id == id);
@@ -69,7 +69,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
     return true;
   }
 
-  public async Task<bool> DeleteTodos(string[] ids)
+  public async Task<bool> DeleteTodos(int[] ids)
   {
     var todos = await context.TodoItems
         .Where(todo => ids.Contains(todo.Id))
@@ -87,7 +87,7 @@ public class TodoRepository(TodoContext context) : ITodoRepository
   }
 
   public async Task<TodoItem?> ToggleTodo(
-   string id)
+   int id)
   {
     var todo = await context.TodoItems
         .FirstOrDefaultAsync(todo => todo.Id == id);

@@ -12,7 +12,7 @@ public class TodoApplication(ITodoRepository repository)
     return repository.GetTodos();
   }
 
-  public Task<TodoItem?> GetTodo(string id)
+  public Task<TodoItem?> GetTodo(int id)
   {
     return repository.GetTodo(id);
   }
@@ -21,7 +21,6 @@ public class TodoApplication(ITodoRepository repository)
   {
     var todo = new TodoItem
     {
-      Id = Guid.NewGuid().ToString(),
       Title = request.Title.Trim(),
       IsCompleted = false,
       CreatedAt = DateTimeOffset.UtcNow,
@@ -32,7 +31,7 @@ public class TodoApplication(ITodoRepository repository)
   }
 
   public Task<TodoItem?> UpdateTodo(
-    string id,
+    int id,
     UpdateTodoRequest request)
   {
     return repository.UpdateTodo(
@@ -41,19 +40,19 @@ public class TodoApplication(ITodoRepository repository)
         request.IsCompleted);
   }
 
-  public Task<bool> DeleteTodo(string id)
+  public Task<bool> DeleteTodo(int id)
   {
     return repository.DeleteTodo(id);
   }
 
-  public Task<bool> DeleteTodos(string[] ids)
+  public Task<bool> DeleteTodos(int[] ids)
   {
     var distinctIds = ids.Distinct().ToArray();
     return repository.DeleteTodos(distinctIds);
   }
 
   public Task<TodoItem?> ToggleTodo(
-    string id)
+    int id)
   {
     return repository.ToggleTodo(
         id);

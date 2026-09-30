@@ -2,7 +2,7 @@ import { useDeleteTodosMutation } from "@/entities/todo";
 import styles from "./DeleteTodosButton.module.css";
 
 interface DeleteTodosButtonProps {
-  ids: string[];
+  ids: number[];
 }
 
 export const DeleteTodosButton = ({ ids }: DeleteTodosButtonProps) => {

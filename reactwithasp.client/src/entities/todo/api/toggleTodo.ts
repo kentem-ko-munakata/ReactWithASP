@@ -1,7 +1,7 @@
 import { todoSchema, type Todo } from "../model/schema";
 
 interface ToggleTodoProps {
-  id: string;
+  id: number;
 }
 
 export const toggleTodo = async ({ id }: ToggleTodoProps): Promise<Todo> => {
