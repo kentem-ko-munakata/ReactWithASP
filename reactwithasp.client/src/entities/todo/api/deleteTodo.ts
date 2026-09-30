@@ -1,5 +1,5 @@
 interface DeleteTodoProps {
-  id: number;
+  id: string;
 }
 
 export const deleteTodo = async ({ id }: DeleteTodoProps): Promise<void> => {
