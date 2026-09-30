@@ -1,0 +1,13 @@
+.checkbox {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin: 0;
+  accent-color: var(--color-success);
+  cursor: pointer;
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid var(--color-success);
+  outline-offset: 2px;
+}

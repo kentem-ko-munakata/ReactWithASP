@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Reactフロントエンドのプロジェクトが置かれているディレクトリ -->
+    <SpaRoot>..\reactwithasp.client</SpaRoot>
+    <!-- バックエンド起動時にSPA開発サーバーを起動するコマンド -->
+    <SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+    <!-- 開発中のSPA開発サーバーのURL -->
+    <SpaProxyServerUrl>https://localhost:62325</SpaProxyServerUrl>
+    <!-- XML形式のAPIドキュメントを生成 Swagger用 -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- XMLコメントがない公開メンバーに対する警告（CS1591）非表示 -->
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
+    <!-- ASP.NET CoreとSPA開発サーバーを連携 -->
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
+      <Version>10.*-*</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.12">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\reactwithasp.client\reactwithasp.client.esproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+
+</Project>
