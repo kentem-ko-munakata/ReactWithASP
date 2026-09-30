@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const todoSchema = z.object({
-  id: z.int(),
+  id: z.string(),
   title: z.string(),
   isCompleted: z.boolean(),
   createdAt: z.iso.datetime({ offset: true }),

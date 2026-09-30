@@ -1,5 +1,5 @@
 interface DeleteTodosProps {
-  ids: number[];
+  ids: string[];
 }
 
 export const deleteTodos = async ({ ids }: DeleteTodosProps): Promise<void> => {
