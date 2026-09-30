@@ -6,7 +6,8 @@ namespace ReactWithASP.Server.Models
     public class TodoItem
     {
         /// <summary>Todo の一意な ID。</summary>
-        public int Id { get; set; }
+        [Required]
+        public string Id { get; set; } = "";
 
         /// <summary>Todo のタイトル。</summary>
         [Required, MaxLength(200)]
