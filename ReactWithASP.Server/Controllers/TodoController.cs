@@ -24,7 +24,7 @@ public class TodoController(ITodoApplication application) : ControllerBase
     /// <response code="200">指定した Todo を返却</response>
     /// <response code="404">指定した ID の Todo が存在しない</response>
     [HttpGet("{id}")]
-    public async Task<ActionResult<TodoItem>> GetTodo(int id)
+    public async Task<ActionResult<TodoItem>> GetTodo(string id)
     {
         var todo = await application.GetTodo(id);
 
@@ -59,7 +59,7 @@ public class TodoController(ITodoApplication application) : ControllerBase
     /// <response code="404">指定した ID の Todo が存在しない</response>
     [HttpPut("{id}")]
     public async Task<ActionResult<TodoItem>> UpdateTodo(
-      int id,
+      string id,
       UpdateTodoRequest request)
     {
         var todo = await application.UpdateTodo(id, request);
@@ -77,7 +77,7 @@ public class TodoController(ITodoApplication application) : ControllerBase
     /// <response code="204">Todo を削除</response>
     /// <response code="404">指定した ID の Todo が存在しない</response>
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteTodo(int id)
+    public async Task<IActionResult> DeleteTodo(string id)
     {
         var todo = await application.DeleteTodo(id);
 
@@ -96,7 +96,7 @@ public class TodoController(ITodoApplication application) : ControllerBase
     [HttpDelete("bulk")]
     public async Task<IActionResult> DeleteTodos(DeleteTodosRequest request)
     {
-        if (request.Ids is null || request.Ids.Length == 0 || request.Ids.Any(id => id <= 0))
+        if (request.Ids is null || request.Ids.Length == 0)
         {
             return BadRequest();
         }
@@ -115,7 +115,7 @@ public class TodoController(ITodoApplication application) : ControllerBase
     /// <response code="200">更新した Todo を返却</response>
     /// <response code="404">指定した ID の Todo が存在しない</response>
     [HttpPost("{id}/toggle")]
-    public async Task<ActionResult<TodoItem>> ToggleTodo(int id)
+    public async Task<ActionResult<TodoItem>> ToggleTodo(string id)
     {
         var todo = await application.ToggleTodo(id);
 

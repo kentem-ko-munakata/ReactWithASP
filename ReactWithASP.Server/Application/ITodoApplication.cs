@@ -6,14 +6,14 @@ namespace ReactWithASP.Server.Application;
 public interface ITodoApplication
 {
   Task<IReadOnlyList<TodoItem>> GetTodos();
-  Task<TodoItem?> GetTodo(int id);
+  Task<TodoItem?> GetTodo(string id);
   Task<TodoItem> CreateTodo(CreateTodoRequest request);
   Task<TodoItem?> UpdateTodo(
-    int id,
+    string id,
     UpdateTodoRequest request);
-  Task<bool> DeleteTodo(int id);
-  Task<bool> DeleteTodos(int[] ids);
+  Task<bool> DeleteTodo(string id);
+  Task<bool> DeleteTodos(string[] ids);
   Task<TodoItem?> ToggleTodo(
-    int id
+    string id
   );
 }
